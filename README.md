@@ -1,6 +1,10 @@
 JSON Schema Creator
-This is a simple PHP package to make it quick and easy to generate a [JSON schema](https://json-schema.org/) 
+This is a simple PHP package to make it quick and easy to generate a [JSON schema](https://json-schema.org/)
 that can then be used for validation and documentation.
+
+This tool was built primarily with the help of the documentation for JSON schemas at
+[opis.io/json-schema](https://opis.io/json-schema/1.x/).
+
 
 ## Install
 
