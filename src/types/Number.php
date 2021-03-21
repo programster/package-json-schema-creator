@@ -23,14 +23,14 @@ class Number extends AbstractType
      */
     public function __construct(
         string $name,
-        ?float $minimum = null,
-        ?float $maximum = null,
+        ?float $min = null,
+        ?float $max = null,
         ?float $multipleOf = null
     )
     {
         parent::__construct($name);
-        $this->m_minimum = $minimum;
-        $this->m_maximum = $maximum;
+        $this->m_minimum = $min;
+        $this->m_maximum = $max;
         $this->m_multipleOf = $multipleOf;
     }
 
@@ -40,6 +40,11 @@ class Number extends AbstractType
         $arrayForm = [
             "type" => "number",
         ];
+
+        if ($this->m_description !== null)
+        {
+            $arrayForm['description'] = $this->m_description;
+        }
 
         if ($this->m_minimum !== null)
         {

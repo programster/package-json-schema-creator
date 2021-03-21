@@ -30,6 +30,11 @@ class ObjectType extends AbstractType
             "type" => "object",
         ];
 
+        if ($this->m_description !== null)
+        {
+            $arrayForm['description'] = $this->m_description;
+        }
+
         if ($this->m_properties !== null)
         {
             $arrayForm['properties'] = $this->m_properties;

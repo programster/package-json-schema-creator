@@ -23,14 +23,14 @@ class Integer extends AbstractType
      */
     public function __construct(
         string $name,
-        ?int $minimum,
-        ?int $maximum,
-        ?int $multipleOf
+        ?int $min = null,
+        ?int $max = null,
+        ?int $multipleOf  = null
     )
     {
         parent::__construct($name);
-        $this->m_minimum = $minimum;
-        $this->m_maximum = $maximum;
+        $this->m_minimum = $min;
+        $this->m_maximum = $max;
         $this->m_multipleOf = $multipleOf;
     }
 
@@ -38,8 +38,13 @@ class Integer extends AbstractType
     public function toArray() : array
     {
         $arrayForm = [
-            "type" => $this->getDataType(),
+            "type" => "integer",
         ];
+
+        if ($this->m_description !== null)
+        {
+            $arrayForm['description'] = $this->m_description;
+        }
 
         if ($this->m_minimum !== null)
         {

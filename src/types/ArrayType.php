@@ -46,6 +46,11 @@ class ArrayType extends AbstractType
             "type" => "array",
         ];
 
+        if ($this->m_description !== null)
+        {
+            $arrayForm['description'] = $this->m_description;
+        }
+
         if ($this->m_minNumItems !== null)
         {
             $arrayForm = ["minItems" => $this->m_minNumItems];

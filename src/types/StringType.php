@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 namespace Programster\JsonSchema\Types;
 
@@ -17,23 +12,34 @@ class StringType extends AbstractType
     private ?string $m_pattern;
     private ?\Programster\JsonSchema\ContentMediaType $m_contentMediaType;
     private ?\Programster\JsonSchema\ContentEncoding $m_contentEncoding;
-
+    private ?array $m_enumValues;
 
     /**
      *
-     * @param string $name - the name of this property
-     * @param string $pattern - A string is valid against this keyword if it matches the regular expression specified by the value of this keyword. Value of this keyword must be a string representing a valid regular expression.
-     * @param string $format - e.g. "email"
-     * @param int|null $minLength
-     * @param int|null $maxLength
-     * @param ContentEncoding|null $contentEncoding
+     * @param string $name
+     *
+     * @param int|null $minLength - the minimum number of characters the string must have.
+     *
+     * @param int|null $maxLength - the maximum number of characters the string can have.
+     *
+     * @param array|null $enumValues - if provided, the string must have a value of one of these values.
+     *
+     * @param string $pattern - A string is valid against this keyword if it matches the regular expression specified
+     * by the value of this keyword. Value of this keyword must be a string representing a valid regular expression.
+     *
+     * @param \Programster\JsonSchema\Format|null $format
+     *
+     * @param \Programster\JsonSchema\ContentEncoding|null $contentEncoding
+     *
+     * @param \Programster\JsonSchema\ContentMediaType|null $contentMediaType
      */
     public function __construct(
         string $name,
-        ?string $pattern = null,
-        ?\Programster\JsonSchema\Format $format = null,
         ?int $minLength = null,
         ?int $maxLength = null,
+        ?array $enumValues = null,
+        ?string $pattern = null,
+        ?\Programster\JsonSchema\Format $format = null,
         ?\Programster\JsonSchema\ContentEncoding $contentEncoding = null,
         ?\Programster\JsonSchema\ContentMediaType $contentMediaType = null
     )
@@ -45,6 +51,7 @@ class StringType extends AbstractType
         $this->m_pattern = $pattern;
         $this->m_contentEncoding = $contentEncoding;
         $this->m_contentMediaType = $contentMediaType;
+        $this->m_enumValues = $enumValues;
     }
 
 
@@ -54,9 +61,14 @@ class StringType extends AbstractType
             'type' => "string"
         );
 
-        if ($this->m_format !== null)
+        if ($this->m_description !== null)
         {
-            $arrayForm['format'] = $this->m_format;
+            $arrayForm['description'] = $this->m_description;
+        }
+
+        if ($this->m_minLength !== null)
+        {
+            $arrayForm['minLength'] = $this->m_minLength;
         }
 
         if ($this->m_maxLength !== null)
@@ -64,9 +76,14 @@ class StringType extends AbstractType
             $arrayForm['maxLength'] = $this->m_maxLength;
         }
 
-        if ($this->m_minLength !== null)
+        if ($this->m_enumValues !== null)
         {
-            $arrayForm['minLength'] = $this->m_minLength;
+            $arrayForm['enum'] = $this->m_enumValues;
+        }
+
+        if ($this->m_format !== null)
+        {
+            $arrayForm['format'] = $this->m_format;
         }
 
         if ($this->m_pattern !== null)
@@ -86,5 +103,4 @@ class StringType extends AbstractType
 
         return $arrayForm;
     }
-
 }

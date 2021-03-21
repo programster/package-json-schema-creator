@@ -14,17 +14,25 @@ namespace Programster\JsonSchema\Types;
 abstract class AbstractType implements InterfaceType, \JsonSerializable
 {
     protected string $m_name;
+    protected ?string $m_description;
 
 
-    public function __construct(string $name)
+    public function __construct(string $name, ?string $description = null)
     {
         $this->m_name = $name;
+        $this->m_description = $description;
     }
 
 
     public function getName() : string
     {
         return $this->m_name;
+    }
+
+
+    public function getDescription() : ?string
+    {
+        return $this->m_description;
     }
 
 
