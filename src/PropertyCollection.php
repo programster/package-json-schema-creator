@@ -28,6 +28,18 @@ final class PropertyCollection implements \JsonSerializable
     }
 
 
+    public function getMap() : array
+    {
+        return $this->m_map;
+    }
+
+
+    public function toArrayList() : array
+    {
+        return array_values($this->m_map);
+    }
+
+
     public function jsonSerialize()
     {
         return $this->m_map;

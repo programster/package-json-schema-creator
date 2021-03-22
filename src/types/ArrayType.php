@@ -13,7 +13,7 @@ class ArrayType extends AbstractType
     private ?int $m_minNumItems;
     private ?int $m_maxNumItems;
     private ?bool $m_containsUniqueValues;
-    private ?DataTypeCollection $m_possibleDataTpes;
+    private ?\Programster\JsonSchema\PropertyCollection $m_possibleDataTpes;
 
 
     /**
@@ -22,19 +22,20 @@ class ArrayType extends AbstractType
      * @param int|null $minNumItems - optionally set a minimum number of items in the array.
      * @param int|null $maxNumItems - optionally set a maximum number of items in the array.
      * @param bool|null $containsUniqueItems - set to true if this array should only contain unique items.
-     * @param DataTypeCollection|null $possibleTypes
+     * @param DataTypeCollection|null $possibleItems
      */
     public function __construct(
         string $name,
-        ?int $minNumItems,
-        ?int $maxNumItems,
-        ?bool $containsUniqueItems,
-        ?DataTypeCollection $possibleTypes
+        ?int $minNumItems = null,
+        ?int $maxNumItems = null,
+        ?bool $containsUniqueItems = null,
+        ?\Programster\JsonSchema\PropertyCollection $possibleItems = null
     )
     {
         $this->m_minNumItems = $minNumItems;
         $this->m_maxNumItems = $maxNumItems;
         $this->m_containsUniqueValues = $containsUniqueItems;
+        $this->m_possibleDataTpes = $possibleItems;
         parent::__construct($name);
     }
 
@@ -64,6 +65,11 @@ class ArrayType extends AbstractType
         if ($this->m_containsUniqueValues !== null)
         {
             $arrayForm = ["uniqueItems" => $this->m_containsUniqueValues];
+        }
+
+        if ($this->m_possibleDataTpes !== null)
+        {
+            $arrayForm = ["items" => $this->m_possibleDataTpes->toArrayList()];
         }
 
         return $arrayForm;
