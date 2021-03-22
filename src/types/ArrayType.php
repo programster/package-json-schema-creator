@@ -54,22 +54,22 @@ class ArrayType extends AbstractType
 
         if ($this->m_minNumItems !== null)
         {
-            $arrayForm = ["minItems" => $this->m_minNumItems];
+            $arrayForm["minItems"] = $this->m_minNumItems;
         }
 
         if ($this->m_maxNumItems !== null)
         {
-            $arrayForm = ["maxItems" => $this->m_maxNumItems];
+            $arrayForm["maxItems"] = $this->m_maxNumItems;
         }
 
         if ($this->m_containsUniqueValues !== null)
         {
-            $arrayForm = ["uniqueItems" => $this->m_containsUniqueValues];
+            $arrayForm["uniqueItems"] = $this->m_containsUniqueValues;
         }
 
         if ($this->m_possibleDataTpes !== null)
         {
-            $arrayForm = ["items" => $this->m_possibleDataTpes->toArrayList()];
+            $arrayForm['items'] = $this->m_possibleDataTpes->toArrayList();
         }
 
         return $arrayForm;

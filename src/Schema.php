@@ -56,9 +56,9 @@ class Schema implements \JsonSerializable
 
     public function toArray() : array
     {
-        $arrayForm = [
+        $arrayForm = array(
             '$schema' => $this->m_schemaUrl,
-        ];
+        );
 
         if ($this->m_id !== null)
         {
