@@ -71,3 +71,5 @@ That would generate the following schema:
 }
 ```
 
+## Testing
+You can check that your generated schema is valid by using [jsonschemalint.com](https://jsonschemalint.com/#!/version/draft-07/markup/json)
