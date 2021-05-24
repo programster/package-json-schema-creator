@@ -70,6 +70,14 @@ class ArrayType extends AbstractType
         if ($this->m_possibleDataTpes !== null)
         {
             $arrayForm['items'] = $this->m_possibleDataTpes->toArrayList();
+
+            // If multiple items, this is tuple validation: https://json-schema.org/understanding-json-schema/reference/array.html#tuple-validation
+            // If one item, then this is list validation: https://json-schema.org/understanding-json-schema/reference/array.html#list-validation
+            // and will need to output structure accordingly.
+            if (count($arrayForm['items']) === 1)
+            {
+                $arrayForm['items'] = $arrayForm['items'][0];
+            }
         }
 
         return $arrayForm;
