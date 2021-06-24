@@ -13,7 +13,7 @@ class Number extends AbstractType
 {
     private ?int $m_minimum;
     private ?int $m_maximum;
-    private ?int $m_multipleOf;
+    private ?float $m_multipleOf; # needs to be float so can use multiple of 0.01 for specifying two decimal places etc.
 
 
     /**
