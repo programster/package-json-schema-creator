@@ -16,6 +16,9 @@
     "require": {
         "php": ">=8.0.0"
     },
+    "require-dev": {
+        "swaggest/json-schema": "^0.12.35"
+    },
     "autoload": {
         "psr-4": {
             "Programster\\JsonSchema\\": "src/",

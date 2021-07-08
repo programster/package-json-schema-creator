@@ -50,7 +50,8 @@ class Schema implements \JsonSerializable
 
     public function __toString()
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $options = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
+        return json_encode($this->toArray(), $options);
     }
 
 

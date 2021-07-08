@@ -32,12 +32,10 @@ final class RequiredPropertiesCollection extends \ArrayObject implements \JsonSe
     {
         if ($value instanceof InterfaceType)
         {
-            print "appending string NAME" . PHP_EOL;
             parent::append($value->getName());
         }
         elseif (is_string($value))
         {
-            print "appending string directly" . PHP_EOL;
             parent::append($value);
         }
         else
@@ -49,7 +47,11 @@ final class RequiredPropertiesCollection extends \ArrayObject implements \JsonSe
 
     public function offsetSet($index, $newval)
     {
-        if (is_string($newval))
+        if ($value instanceof InterfaceType)
+        {
+            parent::offsetSet($index, $newval->getName());
+        }
+        elseif (is_string($value))
         {
             parent::offsetSet($index, $newval);
         }
